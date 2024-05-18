@@ -19,8 +19,9 @@ class Core {
     private:
         sf::RenderWindow _window;
         sf::Texture _menuTexture;
-        sf::Texture _backgroundTexture;
         sf::Sprite _menuSprite;
+        sf::Texture _backgroundTexture;
+        sf::Sprite _backgroundSprite;
         sf::Event _event;
         bool inGame = false;
 };
