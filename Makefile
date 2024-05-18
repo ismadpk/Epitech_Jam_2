@@ -9,15 +9,16 @@ SRC 	= 	src/main.cpp \
 
 CFLAGS 	=	-std=c++20 -Wall -Wextra -Werror
 
+SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+
 OBJ 	=	$(SRC:.cpp=.o)
 
 CC		=	g++
 
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(SFMLFLAGS)
 
 clean:
 	$(RM) $(OBJ)
