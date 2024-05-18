@@ -9,7 +9,7 @@
 class Menu {
     public:
         Menu() = default;
-        Menu(sf::RenderWindow& window);
+        Menu(sf::RenderWindow& window, sf::Event& event);
         ~Menu() = default;
         int handleMenu();
 
@@ -17,6 +17,7 @@ class Menu {
         sf::RenderWindow& _window;
         sf::Texture _menuTexture;
         sf::Sprite _menuSprite;
+        sf::Event& _event;
 };
 
 #endif /* !MENU_HPP_ */
