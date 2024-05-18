@@ -9,11 +9,9 @@ SRC 		= 	src/main.cpp \
 
 CPPFLAGS	=   -iquote ./include
 
-SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+SFMLFLAGS 	= 	-lsfml-graphics -lsfml-window -lsfml-system
 
-SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
-
-CFLAGS 	=	-std=c++20 -Wall -Wextra -Werror
+CFLAGS 		=	-std=c++20 -Wall -Wextra -Werror
 
 CFLAGS 		=	-Wall -Wextra -Werror -std=c++20 -fno-gnu-unique
 
@@ -25,11 +23,7 @@ CC			=	g++
 all: $(NAME)
 
 $(NAME): $(OBJ)
-<<<<<<< Updated upstream
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system
-=======
 	$(CC) -o $(NAME) $(CFLAGS) $(SFMLFLAGS) $(OBJ)
->>>>>>> Stashed changes
 
 clean:
 	$(RM) $(OBJ)

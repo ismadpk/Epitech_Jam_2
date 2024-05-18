@@ -5,6 +5,7 @@
     #include <SFML/Graphics.hpp>
     #include <iostream>
     #include "Menu/Menu.hpp"
+    #include "Player/Player.hpp"
     #define ERROR 84;
     #define SUCCESS 0;
 
@@ -13,7 +14,6 @@ class Core {
         Core();
         ~Core();
         int mainGameLoop();
-        int handleMenu();
         int handleEvents();
         int startGame();
 
@@ -27,6 +27,7 @@ class Core {
         sf::Sprite _gameButtonsSprite;
         sf::Event _event;
         bool inGame = false;
+        Player _player;
 };
 
 #endif /* !CORE_HPP_ */

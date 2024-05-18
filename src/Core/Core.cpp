@@ -12,9 +12,9 @@ int Core::startGame()
         return ERROR;
     if (!_groundOnlyTexture.loadFromFile("./assets/ground.png"))
         return ERROR;
-     if (!_gameButtonsTexture.loadFromFile("./assets/scaled-buttons.png"))
+    if (!_gameButtonsTexture.loadFromFile("./assets/scaled-buttons.png"))
         return ERROR;
-
+    
     _backgroundSprite.setTexture(_backgroundTexture);
     _backgroundSprite.setScale(0.93f, 0.93f);
     _groundOnlySprite.setTexture(_groundOnlyTexture);
@@ -23,9 +23,11 @@ int Core::startGame()
     _gameButtonsSprite.setTexture(_gameButtonsTexture);
     _gameButtonsSprite.setScale(0.93f, 0.93f);
 
+
     _window.clear(sf::Color::Black);
     _window.draw(_backgroundSprite);
     _window.draw(_groundOnlySprite);
+    _window.draw(_player.getSprite());
     _window.draw(_gameButtonsSprite);
     return SUCCESS;
 }
@@ -34,7 +36,7 @@ int Core::handleEvents()
 {
     sf::Vector2i mousePos;
 
-    if (_event.type == sf::Event::Closed)
+    if (_event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         _window.close();
     if (_event.type == sf::Event::MouseButtonPressed && inGame == false) {
         if (_event.mouseButton.button == sf::Mouse::Left) {
@@ -47,13 +49,12 @@ int Core::handleEvents()
     if (_event.type == sf::Event::MouseButtonPressed && inGame == true) {
         if (_event.mouseButton.button == sf::Mouse::Left) {
             mousePos = sf::Mouse::getPosition(_window);
-            //std::cout << "mousePos.x = " << mousePos.x << ", mousePos.y = " << mousePos.y << std::endl;
             if (mousePos.x >= 80 && mousePos.x <= 375 && mousePos.y >= 35 && mousePos.y <= 100) {
-                //std::cout << "BACK TO MENU" << std::endl;
                 inGame = false;
             }
         }
     }
+    _player.handlemove();
     return SUCCESS;
 }
 
