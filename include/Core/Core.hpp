@@ -4,6 +4,7 @@
     #include <SFML/Window.hpp>
     #include <SFML/Graphics.hpp>
     #include <iostream>
+    #include "Menu/Menu.hpp"
     #define ERROR 84;
     #define SUCCESS 0;
 
@@ -18,8 +19,6 @@ class Core {
 
     private:
         sf::RenderWindow _window;
-        sf::Texture _menuTexture;
-        sf::Sprite _menuSprite;
         sf::Texture _backgroundTexture;
         sf::Sprite _backgroundSprite;
         sf::Event _event;

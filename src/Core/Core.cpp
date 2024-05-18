@@ -6,17 +6,6 @@ Core::~Core() {
     // destroy & free everything 
 }
 
-int Core::handleMenu()
-{
-    if (!_menuTexture.loadFromFile("./assets/menu.png"))
-        return ERROR;
-    _menuSprite.setTexture(_menuTexture);
-    _menuSprite.setScale(0.93f, 0.93f);
-    _window.clear(sf::Color::Black);
-    _window.draw(_menuSprite);
-    return SUCCESS;
-}
-
 int Core::startGame()
 {
     if (!_backgroundTexture.loadFromFile("./assets/background-game.png"))
@@ -50,12 +39,13 @@ int Core::handleEvents()
 
 int Core::mainGameLoop() 
 {
+    Menu menu(_window);
     while (_window.isOpen()) {
         while (_window.pollEvent(_event)) {
             handleEvents();
         }
         _window.clear(sf::Color::Black);
-        handleMenu();
+        menu.handleMenu();
         if (inGame == true)
             startGame();
         _window.display();
