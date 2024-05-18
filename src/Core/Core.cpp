@@ -1,8 +1,7 @@
 #include "Core/Core.hpp"
 
-Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default) {
-    // Initialization code here if necessary
-}
+Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default) {}
+
 Core::~Core() {
     // destroy & free everything 
 }
