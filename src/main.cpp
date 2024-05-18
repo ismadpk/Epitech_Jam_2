@@ -1,5 +1,15 @@
+/*
+** EPITECH PROJECT, 2024
+** main
+** File description:
+** JAM2
+*/
 
-int main()
+#include "Core/Core.hpp"
+
+int main(void)
 {
-    return 0;
+    Core core;
+    core.mainGameLoop();
+    return (0);
 }

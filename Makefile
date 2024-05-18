@@ -1,23 +1,25 @@
 
-NAME 	= 	game
+NAME 		= 	game
 
-SRC 	= 	src/main.cpp \
-			src/Core/Core.cpp \
-			src/Medaille/Medaille.cpp \
-			src/Menu/Menu.cpp \
-			src/Player/Player.cpp \
+SRC 		= 	src/main.cpp \
+				src/Core/Core.cpp \
+				src/Pieces/Pieces.cpp \
+				src/Menu/Menu.cpp \
+				src/Player/Player.cpp \
 
-CFLAGS 	=	-std=c++20 -Wall -Wextra -Werror
+CPPFLAGS	=   -iquote ./include
 
-OBJ 	=	$(SRC:.cpp=.o)
+CFLAGS 		=	-Wall -Wextra -Werror -std=c++20 -fno-gnu-unique
 
-CC		=	g++
+OBJ 		=	$(SRC:.cpp=.o)
+
+CC			=	g++
 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 	$(RM) $(OBJ)
