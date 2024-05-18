@@ -8,7 +8,7 @@ Core::~Core() {
 
 int Core::startGame()
 {
-    if (!_backgroundTexture.loadFromFile("./assets/background-no-ground.png"))
+    if (!_backgroundTexture.loadFromFile("./assets/plain-background.png"))
         return ERROR;
     if (!_groundOnlyTexture.loadFromFile("./assets/ground.png"))
         return ERROR;
