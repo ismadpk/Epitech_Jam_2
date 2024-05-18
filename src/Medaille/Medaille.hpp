@@ -7,7 +7,7 @@
 class Medaille {
     public:
         Medaille();
-        void setTexture(std::string Img);
+        void setTexture();
         void moveMedal();
         void setPosition(sf::Vector2f pos);
         sf::Vector2f getPosition();
@@ -16,7 +16,8 @@ class Medaille {
         ~Medaille();
 
     private:
-        sf::Texture _texture;
+        sf::Texture _fireTexture;
+        sf::Texture _waterTexture;
         sf::Sprite _medal;
 };
 

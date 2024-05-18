@@ -11,10 +11,8 @@ int Core::runGame()
 
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
     Medaille medalLeft;
-    Medaille medalLefta;
-    medalLeft.setPosition({0, 0});
-    medalLefta.setPosition({31, 0});
-    window.setFramerateLimit(100);
+    medalLeft.setPosition({140, 0});
+    window.setFramerateLimit(140);
  
     while (window.isOpen())
     {
@@ -29,7 +27,6 @@ int Core::runGame()
 
         window.clear();
         window.draw(medalLeft.getMedal());
-        window.draw(medalLefta.getMedal());
         window.display();
     }
 
