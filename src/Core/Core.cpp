@@ -8,12 +8,25 @@ Core::~Core() {
 
 int Core::startGame()
 {
-    if (!_backgroundTexture.loadFromFile("./assets/side-background.png"))
+    if (!_backgroundTexture.loadFromFile("./assets/background-no-ground.png"))
         return ERROR;
+    if (!_groundOnlyTexture.loadFromFile("./assets/ground.png"))
+        return ERROR;
+     if (!_gameButtonsTexture.loadFromFile("./assets/scaled-buttons.png"))
+        return ERROR;
+
     _backgroundSprite.setTexture(_backgroundTexture);
     _backgroundSprite.setScale(0.93f, 0.93f);
+    _groundOnlySprite.setTexture(_groundOnlyTexture);
+    _groundOnlySprite.setScale(2.55f, 2.55f);
+    _groundOnlySprite.setPosition(0.0f, 43.0f);
+    _gameButtonsSprite.setTexture(_gameButtonsTexture);
+    _gameButtonsSprite.setScale(0.93f, 0.93f);
+
     _window.clear(sf::Color::Black);
     _window.draw(_backgroundSprite);
+    _window.draw(_groundOnlySprite);
+    _window.draw(_gameButtonsSprite);
     return SUCCESS;
 }
 

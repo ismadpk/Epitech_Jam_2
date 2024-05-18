@@ -21,6 +21,10 @@ class Core {
         sf::RenderWindow _window;
         sf::Texture _backgroundTexture;
         sf::Sprite _backgroundSprite;
+        sf::Texture _groundOnlyTexture;
+        sf::Sprite _groundOnlySprite;
+        sf::Texture _gameButtonsTexture;
+        sf::Sprite _gameButtonsSprite;
         sf::Event _event;
         bool inGame = false;
 };
