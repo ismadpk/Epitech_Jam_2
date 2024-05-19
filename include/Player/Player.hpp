@@ -21,6 +21,7 @@ class Player
         sf::Vector2f getPosition() const;
         sf::Vector2u getSize() const;
         bool getStatusGame() const;
+        int getScore() const;
 
     private:
         void moveLeft();

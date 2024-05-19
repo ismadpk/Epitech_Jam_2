@@ -22,9 +22,9 @@ bool Core::checkColisions(sf::Vector2f firstPos, sf::Vector2f secPos, sf::Vector
 int Core::startGame()
 {
     _window.clear(sf::Color::Black);
-    _parallax.renderParallax(_window);
     _medalLeft.moveMedal(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
     _player.handlemove(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()), _medalLeft.getStatus());
+    _parallax.renderParallax(_window);
     _window.draw(_player.getSprite());
     _window.draw(_medalLeft.getMedal());
     return SUCCESS;

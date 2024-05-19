@@ -61,6 +61,7 @@ bool Player::upgradeTransformation(bool isCollision, Status status)
 {
     if (status == Status::Fire && isCollision == true && _nbTransformation < MAX_TRANSFORMATION) {
         this->_counterFlam += 1;
+        this->_score += 1;
         if (this->_counterFlam % NB_FOR_UPGRADE == 0)
         {
             this->_counterFlam = 0;
@@ -73,7 +74,6 @@ bool Player::upgradeTransformation(bool isCollision, Status status)
 
 bool Player::downgradeTransformation(bool isCollision, Status status)
 {
-
     if (status == Status::Water && isCollision == true && _nbTransformation > MIN_TRANSFORMATION) {
         this->_counterWater += 1;
         if (this->_counterWater >= NB_FOR_DOWNGRADE)
@@ -83,10 +83,10 @@ bool Player::downgradeTransformation(bool isCollision, Status status)
             return true;
         }
     }
-    if (status == Status::Water && _nbTransformation == MIN_TRANSFORMATION && isCollision == true)
+    if (status == Status::Water && isCollision == true && _nbTransformation == MIN_TRANSFORMATION)
     {
         this->_counterWater += 1;
-        if (this->_counterWater == NB_FOR_LOSS)
+        if (this->_counterWater >= NB_FOR_LOSS)
         {
             this->_isLoss = true;
         }
@@ -160,4 +160,9 @@ sf::Vector2u Player::getSize() const
 bool Player::getStatusGame() const
 {
     return this->_isLoss;
+}
+
+int Player::getScore() const
+{
+    return this->_score;
 }
