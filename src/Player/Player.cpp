@@ -81,13 +81,19 @@ bool Player::downgradeTransformation(bool isCollision, Status status)
             this->_nbTransformation -= 1;
             return true;
         }
+        return false;
     }
     if (status == Status::Water && isCollision == true && _nbTransformation == MIN_TRANSFORMATION)
     {
-        this->_counterWater += 1;
-        if (this->_counterWater >= NB_FOR_LOSS)
+
+        if (isCollision == true)
         {
-            this->_isLoss = true;
+            this->_counterWater += 1;
+            std::cout << "COLLISION: " << _counterWater << std::endl;
+            if (this->_counterWater >= NB_FOR_LOSS)
+            {
+                this->_isLoss = true;
+            }
         }
     }
     return false; 

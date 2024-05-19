@@ -30,7 +30,7 @@ void Medaille::moveMedal(bool isCollision)
     std::srand(std::time(0));
     int random_value = std::rand() % 2;
 
-    if (posY >= 850 || isCollision == true) {
+    if (posY >= 830 || isCollision == true) {
         posY = -80;
         if (random_value == 0) {
             sf::IntRect waterRect({0, 0, 70, 92});
