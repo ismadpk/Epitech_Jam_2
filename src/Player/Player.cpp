@@ -2,7 +2,6 @@
 #include "Player/Player.hpp"
 #include <iostream>
 #include <SFML/Window.hpp>
-#include "Player.hpp"
 
 Player::Player() : _rect(0, 119, 56, 90), _windowSize(1920, 1050), _counterFlam(0),
     _counterWater(0), _nbTransformation(0), _speed(8), _score(0), _isLoss(false)
