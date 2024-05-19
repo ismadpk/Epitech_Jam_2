@@ -33,7 +33,7 @@ void Medaille::moveMedal(bool isCollision)
     if (posY >= 850 || isCollision == true) {
         posY = -80;
         if (random_value == 0) {
-            sf::IntRect waterRect({0, 0, 60, 100});
+            sf::IntRect waterRect({0, 0, 70, 92});
             this->_medal.setTextureRect(waterRect);
             this->_medal.setTexture(this->_waterTexture);
             this->_status = Status::Water;
