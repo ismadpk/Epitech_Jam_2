@@ -14,6 +14,7 @@ Player::Player() : _rect(0, 119, 56, 90), _windowSize(1920, 1050), _counterFlam(
     this->_sprite.setTexture(this->_texture);
     this->_currentPos = std::make_pair<int, int>((this->_windowSize.first / 2), (this->_windowSize.second - 220));
     this->_sprite.setPosition(this->_currentPos.first, this->_currentPos.second);
+    this->_sprite.setScale(1.25, 1.25);
 }
 
 Player::~Player() {}
