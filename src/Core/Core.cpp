@@ -2,7 +2,6 @@
 
 Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
 {
-    _medalLeft.setPosition({140, 0});
     _window.setFramerateLimit(140);
 }
 
@@ -29,15 +28,15 @@ int Core::startGame()
         return ERROR;
     
     _backgroundSprite.setTexture(_backgroundTexture);
-    _backgroundSprite.setScale(0.93f, 0.93f);
+    _backgroundSprite.setScale(1.0f, 0.93f);
     _groundOnlySprite.setTexture(_groundOnlyTexture);
-    _groundOnlySprite.setScale(2.55f, 2.55f);
-    _groundOnlySprite.setPosition(0.0f, 43.0f);
+    _groundOnlySprite.setScale(2.9, 2.55f);
+    _groundOnlySprite.setPosition(0.0f, 50.0f);
     _gameButtonsSprite.setTexture(_gameButtonsTexture);
     _gameButtonsSprite.setScale(0.93f, 0.93f);
 
     _medalLeft.moveMedal(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
-    _player.handlemove(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
+    _player.handlemove(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()), _medalLeft.getStatus());
     _window.clear(sf::Color::Black);
     _window.draw(_backgroundSprite);
     _window.draw(_groundOnlySprite);
