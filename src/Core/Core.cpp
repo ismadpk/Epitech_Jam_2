@@ -1,6 +1,9 @@
+#include "Parallaxe/Parallaxe.hpp"
 #include "Core/Core.hpp"
 
-Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default) {}
+Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
+{
+}
 
 Core::~Core() {
     // destroy & free everything 
@@ -8,12 +11,14 @@ Core::~Core() {
 
 int Core::startGame()
 {
-    if (!_backgroundTexture.loadFromFile("./assets/side-background.png"))
-        return ERROR;
-    _backgroundSprite.setTexture(_backgroundTexture);
-    _backgroundSprite.setScale(0.93f, 0.93f);
-    _window.clear(sf::Color::Black);
-    _window.draw(_backgroundSprite);
+    // if (!_backgroundTexture.loadFromFile("./assets/side-background.png"))
+    //     return ERROR;
+    // _backgroundSprite.setTexture(_backgroundTexture);
+    // _backgroundSprite.setScale(0.93f, 0.93f);
+    // _window.clear(sf::Color::Black);
+    // _window.draw(_backgroundSprite);
+    _parallaxe.updatePosBgd(_window);
+    _parallaxe.renderParallaxe(_window);
     return SUCCESS;
 }
 
