@@ -80,8 +80,8 @@ int Core::mainGameLoop()
             handleEvents();
         }
         _window.clear(sf::Color::Black);
-        // menu.handleMenu();
-        // if (inGame == true)
+        menu.handleMenu();
+        if (inGame == true)
             startGame();
         if(_player.getStatusGame() == true) // check if the player is lost
             break;
