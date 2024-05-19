@@ -3,7 +3,6 @@ NAME 		= 	game
 
 SRC 		= 	src/main.cpp \
 				src/Core/Core.cpp \
-				src/Pieces/Pieces.cpp \
 				src/Menu/Menu.cpp \
 				src/Player/Player.cpp \
 				src/Medaille/Medaille.cpp \
