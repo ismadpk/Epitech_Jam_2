@@ -14,7 +14,6 @@ Parallax::Parallax()
 
 void Parallax::initAssets(void)
 {
-    std::cout << "init Assets" << std::endl;
     if (!_backgroundTexture.loadFromFile("./assets/sky.png")) {
         std::cerr << "Failed to load texture: sky.png" << std::endl;
     }
