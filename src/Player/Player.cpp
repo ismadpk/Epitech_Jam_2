@@ -1,10 +1,11 @@
 
-#include "../include/Player/Player.hpp"
+#include "Player/Player.hpp"
 #include <iostream>
 #include <SFML/Window.hpp>
+#include "Player.hpp"
 
 Player::Player() : _rect(0, 119, 56, 90), _windowSize(1920, 1050), _counterFlam(0),
-    _counterWater(0), _nbTransformation(0), _speed(20), _score(0)
+    _counterWater(0), _nbTransformation(0), _speed(8), _score(0), _isLoss(false)
 {
     if (!this->_texture.loadFromFile("assets/flame-runner.png"))
     {
@@ -36,7 +37,7 @@ void Player::moveRight()
     }
 }
 
-void Player::handlemove()
+void Player::handlemove(bool isCollision)
 {
     bool isMove = false;
 
@@ -54,12 +55,12 @@ void Player::handlemove()
     {
         this->_sprite.setPosition(this->_currentPos.first, this->_currentPos.second);
     }
-    this->handleTransformation();
+    this->handleTransformation(isCollision);
 }
 
-bool Player::upgradeTransformation()
+bool Player::upgradeTransformation(bool isCollision)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && _nbTransformation < MAX_TRANSFORMATION) {
+    if (isCollision == true && _nbTransformation < MAX_TRANSFORMATION) {
         this->_counterFlam += 1;
         if (this->_counterFlam % NB_FOR_UPGRADE == 0)
         {
@@ -71,7 +72,7 @@ bool Player::upgradeTransformation()
     return false;
 }
 
-bool Player::downgradeTransformation()
+bool Player::downgradeTransformation(bool isCollision)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _nbTransformation > MIN_TRANSFORMATION) {
         this->_counterWater += 1;
@@ -82,12 +83,21 @@ bool Player::downgradeTransformation()
             return true;
         }
     }
+    if (_nbTransformation == MIN_TRANSFORMATION)
+    {
+        this->_counterWater += 1;
+        if (this->_counterWater == 0)
+        {
+            this->_isLoss = true;
+        }
+    }
     return false; 
 }
 
-void Player::handleTransformation()
+void Player::handleTransformation(bool isCollision)
 {
-    if (this->downgradeTransformation() == true || this->upgradeTransformation() == true)
+    if (this->upgradeTransformation(isCollision) == true )
+    // || this->downgradeTransformation(isCollision) == true)
     {
         if (this->_nbTransformation == 0)
         {
@@ -136,4 +146,19 @@ void Player::handleTransformation()
 sf::Sprite Player::getSprite() const
 {
     return this->_sprite;
+}
+
+sf::Vector2f Player::getPosition() const
+{
+    return this->_sprite.getPosition();
+}
+
+sf::Vector2u Player::getSize() const
+{
+    return this->_sprite.getTexture()->getSize();
+}
+
+bool Player::getStatusGame() const
+{
+    return this->_isLoss;
 }
