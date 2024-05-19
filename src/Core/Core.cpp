@@ -1,9 +1,22 @@
 #include "Core/Core.hpp"
 
-Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default) {}
+Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
+{
+    _medalLeft.setPosition({140, 0});
+    _window.setFramerateLimit(140);
+}
 
 Core::~Core() {
     // destroy & free everything 
+}
+
+bool Core::checkColisions(sf::Vector2f firstPos, sf::Vector2f secPos, sf::Vector2u firstSize, sf::Vector2u secSize)
+{
+    if (firstPos.x < (secPos.x + secSize.x) && (firstPos.x + firstSize.x) > secPos.x
+    && firstPos.y < (secPos.y + secSize.y) && (firstPos.y + firstSize.y) > secPos.y) {
+        return true;
+    }
+    return false;
 }
 
 int Core::startGame()
@@ -23,11 +36,13 @@ int Core::startGame()
     _gameButtonsSprite.setTexture(_gameButtonsTexture);
     _gameButtonsSprite.setScale(0.93f, 0.93f);
 
-
+    _medalLeft.moveMedal(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
+    _player.handlemove(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
     _window.clear(sf::Color::Black);
     _window.draw(_backgroundSprite);
     _window.draw(_groundOnlySprite);
     _window.draw(_player.getSprite());
+    _window.draw(_medalLeft.getMedal());
     _window.draw(_gameButtonsSprite);
     return SUCCESS;
 }
@@ -54,7 +69,6 @@ int Core::handleEvents()
             }
         }
     }
-    _player.handlemove();
     return SUCCESS;
 }
 
@@ -66,9 +80,11 @@ int Core::mainGameLoop()
             handleEvents();
         }
         _window.clear(sf::Color::Black);
-        menu.handleMenu();
-        if (inGame == true)
+        // menu.handleMenu();
+        // if (inGame == true)
             startGame();
+        if(_player.getStatusGame() == true) // check if the player is lost
+            break;
         _window.display();
     }
     return SUCCESS;

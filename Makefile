@@ -6,19 +6,19 @@ SRC 		= 	src/main.cpp \
 				src/Pieces/Pieces.cpp \
 				src/Menu/Menu.cpp \
 				src/Player/Player.cpp \
+				src/Medaille/Medaille.cpp \
+
+OBJ 	=	$(SRC:.cpp=.o)
 
 CPPFLAGS	=   -iquote ./include
 
 SFMLFLAGS 	= 	-lsfml-graphics -lsfml-window -lsfml-system
-
-CFLAGS 		=	-std=c++20 -Wall -Wextra -Werror
 
 CFLAGS 		=	-Wall -Wextra -Werror -std=c++20 -fno-gnu-unique
 
 OBJ 		=	$(SRC:.cpp=.o)
 
 CC			=	g++
-
 
 all: $(NAME)
 
