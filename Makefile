@@ -6,7 +6,7 @@ SRC 		= 	src/main.cpp \
 				src/Pieces/Pieces.cpp \
 				src/Menu/Menu.cpp \
 				src/Player/Player.cpp \
-				src/Parallaxe/Parallaxe.cpp\
+				src/Parallax/Parallax.cpp\
 
 CPPFLAGS	=   -iquote ./include
 

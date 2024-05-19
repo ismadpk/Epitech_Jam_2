@@ -1,4 +1,4 @@
-#include "Parallaxe/Parallaxe.hpp"
+#include "Parallax/Parallax.hpp"
 #include "Core/Core.hpp"
 
 Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
@@ -15,10 +15,8 @@ int Core::startGame()
     //     return ERROR;
     // _backgroundSprite.setTexture(_backgroundTexture);
     // _backgroundSprite.setScale(0.93f, 0.93f);
-    // _window.clear(sf::Color::Black);
-    // _window.draw(_backgroundSprite);
-    _parallaxe.updatePosBgd(_window);
-    _parallaxe.renderParallaxe(_window);
+    _window.clear(sf::Color::Black);
+    _parallax.renderParallax(_window);
     return SUCCESS;
 }
 
@@ -52,14 +50,17 @@ int Core::handleEvents()
 int Core::mainGameLoop() 
 {
     Menu menu(_window, _event);
+
     while (_window.isOpen()) {
         while (_window.pollEvent(_event)) {
             handleEvents();
         }
         _window.clear(sf::Color::Black);
-        menu.handleMenu();
-        if (inGame == true)
+        if (inGame) {
             startGame();
+        } else {
+            menu.handleMenu();
+        }
         _window.display();
     }
     return SUCCESS;

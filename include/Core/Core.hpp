@@ -5,7 +5,7 @@
     #include <SFML/Graphics.hpp>
     #include <iostream>
     #include "Menu/Menu.hpp"
-    #include "Parallaxe/Parallaxe.hpp"
+    #include "Parallax/Parallax.hpp"
     #define ERROR 84;
     #define SUCCESS 0;
 
@@ -23,7 +23,7 @@ class Core {
         sf::Texture _backgroundTexture;
         sf::Sprite _backgroundSprite;
         sf::Event _event;
-        Parallaxe _parallaxe;
+        Parallax _parallax;
         bool inGame = false;
 };
 
