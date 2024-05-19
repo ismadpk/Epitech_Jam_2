@@ -23,7 +23,6 @@ class Core {
         bool checkColisions(sf::Vector2f firstObj, sf::Vector2f secObj, sf::Vector2u firstSize, sf::Vector2u secSize);
         int startGame();
 
-
     private:
         sf::RenderWindow _window;
         sf::Event _event;

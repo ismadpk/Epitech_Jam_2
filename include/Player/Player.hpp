@@ -21,7 +21,9 @@ class Player
         sf::Vector2f getPosition() const;
         sf::Vector2u getSize() const;
         bool getStatusGame() const;
+        int handleScoreText();
         int getScore() const;
+        sf::Text getScoreText() const;
 
     private:
         void moveLeft();
@@ -40,6 +42,8 @@ class Player
         int _speed;
         int _score;
         bool _isLoss;
+        sf::Text _scoreText;
+        sf::Font _font;
 };
 
 #endif /* !PLAYER_HPP_ */

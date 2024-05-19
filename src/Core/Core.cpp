@@ -24,9 +24,11 @@ int Core::startGame()
     _window.clear(sf::Color::Black);
     _medalLeft.moveMedal(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()));
     _player.handlemove(checkColisions(_player.getPosition(), _medalLeft.getPosition(), _player.getSize(), _medalLeft.getSize()), _medalLeft.getStatus());
+    _player.handleScoreText();
     _parallax.renderParallax(_window);
     _window.draw(_player.getSprite());
     _window.draw(_medalLeft.getMedal());
+    _window.draw(_player.getScoreText());
     return SUCCESS;
 }
 

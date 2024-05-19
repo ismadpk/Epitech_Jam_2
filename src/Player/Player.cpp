@@ -16,9 +16,7 @@ Player::Player() : _rect(0, 119, 56, 90), _windowSize(1920, 1050), _counterFlam(
     this->_sprite.setPosition(this->_currentPos.first, this->_currentPos.second);
 }
 
-Player::~Player()
-{
-}
+Player::~Player() {}
 
 void Player::moveLeft()
 {
@@ -142,6 +140,20 @@ void Player::handleTransformation(bool isCollision, Status status)
     }
 }
 
+int Player::handleScoreText()
+{
+    if (!_font.loadFromFile("assets/Pixeled.ttf")) {
+        std::cerr << "error: font loading failure" << std::endl;
+        return (84);
+    }
+    _scoreText.setFont(_font);
+    _scoreText.setCharacterSize(30);
+    _scoreText.setFillColor(sf::Color::Black);
+    _scoreText.setPosition(280.0f, 138.0f);
+    _scoreText.setString(std::to_string(_score));
+    return (0);
+}
+
 sf::Sprite Player::getSprite() const
 {
     return this->_sprite;
@@ -165,4 +177,9 @@ bool Player::getStatusGame() const
 int Player::getScore() const
 {
     return this->_score;
+}
+
+sf::Text Player::getScoreText() const
+{
+    return this->_scoreText;
 }
