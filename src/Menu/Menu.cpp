@@ -7,7 +7,7 @@ Menu::Menu(sf::RenderWindow& window, sf::Event& event) : _window(window), _event
         std::cerr << "Failed to load texture" << std::endl;
     } else {
         _menuSprite.setTexture(_menuTexture);
-        _menuSprite.setScale(0.93f, 0.93f);
+        _menuSprite.setScale(1.0f, 1.0f);
     }
 }
 
