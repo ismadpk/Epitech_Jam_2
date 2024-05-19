@@ -1,10 +1,15 @@
 
 #ifndef CORE_HPP_
     #define CORE_HPP_
+
+    #include <SFML/Graphics.hpp>
     #include <SFML/Window.hpp>
     #include <SFML/Graphics.hpp>
     #include <iostream>
     #include "Menu/Menu.hpp"
+    #include "Player/Player.hpp"
+    #include "Medaille/Medaille.hpp"
+
     #define ERROR 84;
     #define SUCCESS 0;
 
@@ -13,9 +18,10 @@ class Core {
         Core();
         ~Core();
         int mainGameLoop();
-        int handleMenu();
         int handleEvents();
+        bool checkColisions(sf::Vector2f firstObj, sf::Vector2f secObj, sf::Vector2u firstSize, sf::Vector2u secSize);
         int startGame();
+
 
     private:
         sf::RenderWindow _window;
@@ -27,6 +33,8 @@ class Core {
         sf::Sprite _gameButtonsSprite;
         sf::Event _event;
         bool inGame = false;
+        Player _player;
+        Medaille _medalLeft;
 };
 
 #endif /* !CORE_HPP_ */

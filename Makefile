@@ -6,6 +6,9 @@ SRC 		= 	src/main.cpp \
 				src/Pieces/Pieces.cpp \
 				src/Menu/Menu.cpp \
 				src/Player/Player.cpp \
+				src/Medaille/Medaille.cpp \
+
+OBJ 	=	$(SRC:.cpp=.o)
 
 CPPFLAGS	=   -iquote ./include
 

@@ -1,9 +1,3 @@
-/*
-** EPITECH PROJECT, 2024
-** main
-** File description:
-** JAM2
-*/
 
 #include "Core/Core.hpp"
 
