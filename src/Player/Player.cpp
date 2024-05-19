@@ -36,7 +36,7 @@ void Player::moveRight()
     }
 }
 
-void Player::handlemove(bool isCollision)
+void Player::handlemove(bool isCollision, Status status)
 {
     bool isMove = false;
 
@@ -54,12 +54,12 @@ void Player::handlemove(bool isCollision)
     {
         this->_sprite.setPosition(this->_currentPos.first, this->_currentPos.second);
     }
-    this->handleTransformation(isCollision);
+    this->handleTransformation(isCollision, status);
 }
 
-bool Player::upgradeTransformation(bool isCollision)
+bool Player::upgradeTransformation(bool isCollision, Status status)
 {
-    if (isCollision == true && _nbTransformation < MAX_TRANSFORMATION) {
+    if (status == Status::Fire && isCollision == true && _nbTransformation < MAX_TRANSFORMATION) {
         this->_counterFlam += 1;
         if (this->_counterFlam % NB_FOR_UPGRADE == 0)
         {
@@ -71,21 +71,22 @@ bool Player::upgradeTransformation(bool isCollision)
     return false;
 }
 
-bool Player::downgradeTransformation(bool isCollision)
+bool Player::downgradeTransformation(bool isCollision, Status status)
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && _nbTransformation > MIN_TRANSFORMATION) {
+
+    if (status == Status::Water && isCollision == true && _nbTransformation > MIN_TRANSFORMATION) {
         this->_counterWater += 1;
-        if (this->_counterWater == NB_FOR_DOWNGRADE)
+        if (this->_counterWater >= NB_FOR_DOWNGRADE)
         {
             this->_counterWater = 0;
             this->_nbTransformation -= 1;
             return true;
         }
     }
-    if (_nbTransformation == MIN_TRANSFORMATION)
+    if (status == Status::Water && _nbTransformation == MIN_TRANSFORMATION && isCollision == true)
     {
         this->_counterWater += 1;
-        if (this->_counterWater == 0)
+        if (this->_counterWater == NB_FOR_LOSS)
         {
             this->_isLoss = true;
         }
@@ -93,10 +94,9 @@ bool Player::downgradeTransformation(bool isCollision)
     return false; 
 }
 
-void Player::handleTransformation(bool isCollision)
+void Player::handleTransformation(bool isCollision, Status status)
 {
-    if (this->upgradeTransformation(isCollision) == true )
-    // || this->downgradeTransformation(isCollision) == true)
+    if (this->upgradeTransformation(isCollision, status) == true || this->downgradeTransformation(isCollision, status) == true)
     {
         if (this->_nbTransformation == 0)
         {
