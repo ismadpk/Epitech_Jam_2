@@ -21,6 +21,7 @@ class Core {
         int mainGameLoop();
         int handleEvents();
         bool checkColisions(sf::Vector2f firstObj, sf::Vector2f secObj, sf::Vector2u firstSize, sf::Vector2u secSize);
+        int handleLose();
         int startGame();
 
     private:

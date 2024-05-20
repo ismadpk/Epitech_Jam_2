@@ -24,6 +24,8 @@ class Player
         int handleScoreText();
         int getScore() const;
         sf::Text getScoreText() const;
+        void setLoss(bool);
+        void setScore(int);;
 
     private:
         void moveLeft();

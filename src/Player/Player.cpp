@@ -88,8 +88,8 @@ bool Player::downgradeTransformation(bool isCollision, Status status)
 
         if (isCollision == true)
         {
+            this->_isLoss = true;
             this->_counterWater += 1;
-            std::cout << "COLLISION: " << _counterWater << std::endl;
             if (this->_counterWater >= NB_FOR_LOSS)
             {
                 this->_isLoss = true;
@@ -189,4 +189,14 @@ int Player::getScore() const
 sf::Text Player::getScoreText() const
 {
     return this->_scoreText;
+}
+
+void Player::setLoss(bool status)
+{
+    this->_isLoss = status;
+}
+
+void Player::setScore(int score)
+{
+    this->_score = score;
 }

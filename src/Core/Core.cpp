@@ -1,5 +1,6 @@
 #include "Parallax/Parallax.hpp"
 #include "Core/Core.hpp"
+#include "unistd.h"
 
 Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
 {
@@ -57,6 +58,37 @@ int Core::handleEvents()
     return SUCCESS;
 }
 
+int Core::handleLose()
+{
+    sf::Texture loseTexture;
+    sf::Sprite loseSprite;
+
+    if (!loseTexture.loadFromFile("assets/loseSprite.png")) {
+        std::cerr << "Error : lose sprite failed" << std::endl;
+        return 1;
+    }
+    loseSprite.setPosition(720, 350);
+    loseSprite.setTexture(loseTexture);
+    
+    while (_window.isOpen()) {
+        while (_window.pollEvent(_event)) {
+            if (_event.type == sf::Event::Closed)
+                _window.close();
+            if (_event.type == sf::Event::KeyPressed) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+                    return 0;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+                    return 1;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+                    return 1;
+            }
+        }
+        this->_window.draw(loseSprite);
+        this->_window.display();
+    }
+    return 0;
+}
+
 int Core::mainGameLoop() 
 {
     Menu menu(_window, _event);
@@ -71,8 +103,14 @@ int Core::mainGameLoop()
         } else {
             menu.handleMenu();
         }
-        if(_player.getStatusGame() == true) // check if the player is lost
-            break;
+        if (_player.getStatusGame() == true) {
+            if (this->handleLose() == 1) {
+                this->_window.clear();
+                this->inGame = false;
+            }
+            this->_player.setScore(0);
+            this->_player.setLoss(false);
+        }
         _window.display();
     }
     return SUCCESS;
