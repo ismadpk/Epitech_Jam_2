@@ -1,6 +1,5 @@
 #include "Parallax/Parallax.hpp"
 #include "Core/Core.hpp"
-#include "unistd.h"
 
 Core::Core() : _window(sf::VideoMode(1920, 1080), "JAM Game", sf::Style::Default)
 {
@@ -58,6 +57,30 @@ int Core::handleEvents()
     return SUCCESS;
 }
 
+void Core::displayCredits()
+{
+    sf::Texture creditTexture;
+    sf::Sprite creditSprite;
+
+    if (!creditTexture.loadFromFile("assets/creditSprite.png"))
+        return;
+
+    creditSprite.setPosition(660, -300);
+    creditSprite.setTexture(creditTexture);
+    this->_window.clear();
+
+    while (creditSprite.getPosition().y != 1100) {
+        while (_window.pollEvent(_event)) {
+            if (_event.type == sf::Event::Closed)
+                _window.close();
+        }
+        creditSprite.setPosition(creditSprite.getPosition().x, creditSprite.getPosition().y + 1);
+        this->_window.clear();
+        this->_window.draw(creditSprite);
+        this->_window.display();
+    }
+}
+
 int Core::handleLose()
 {
     sf::Texture loseTexture;
@@ -77,10 +100,14 @@ int Core::handleLose()
             if (_event.type == sf::Event::KeyPressed) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
                     return 0;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
+                    this->displayCredits();
+                    return 1;
+                }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
                     return 1;
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                    return 1;
+                    this->_window.close();
             }
         }
         this->_window.draw(loseSprite);

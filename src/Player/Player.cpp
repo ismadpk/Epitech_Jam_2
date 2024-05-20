@@ -85,10 +85,8 @@ bool Player::downgradeTransformation(bool isCollision, Status status)
     }
     if (status == Status::Water && isCollision == true && _nbTransformation == MIN_TRANSFORMATION)
     {
-
         if (isCollision == true)
         {
-            this->_isLoss = true;
             this->_counterWater += 1;
             if (this->_counterWater >= NB_FOR_LOSS)
             {
@@ -199,4 +197,6 @@ void Player::setLoss(bool status)
 void Player::setScore(int score)
 {
     this->_score = score;
+    this->_counterFlam = 0;
+    this->_counterWater = 0;
 }
